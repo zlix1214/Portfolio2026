@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light;
+  --font-serif: "DM Serif Display", serif;
+  --font-sans: "Barlow", sans-serif;
+  --font-mono: "DM Mono", monospace;
+  --color-ink: #0d0d0d;
+  --color-paper: #f5f2ec;
+  --color-surface: #edeae2;
+  --color-rule: #0d0d0d;
+  --color-accent: #b84a2e;
+  --color-accent-soft: #d4775c;
+  --color-muted: #6b6760;
+  --color-panel: #fffaf1;
+  --rule-heavy: 3px;
+  --rule-mid: 1px;
+  --shadow-line: 0 0 0 1px color-mix(in srgb, var(--color-rule) 18%, transparent);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-ink: #f5f2ec;
+  --color-paper: #2a2825;
+  --color-surface: #35312d;
+  --color-rule: #f5f2ec;
+  --color-accent: #d4775c;
+  --color-accent-soft: #b84a2e;
+  --color-muted: #b8b2a8;
+  --color-panel: #211f1d;
+}

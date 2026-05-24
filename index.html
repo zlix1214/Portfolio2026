@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="鄭祥佑 Felix Zheng 的個人作品集，展示 MERN、React、TypeScript、ASP.NET Core 與 Entity Framework Core 專案。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="鄭祥佑 Felix Zheng | Full Stack Portfolio" />
+    <meta
+      property="og:description"
+      content="MERN + .NET full-stack portfolio focused on React, TypeScript, ASP.NET Core, EF Core, and practical project builds."
+    />
+    <meta property="og:site_name" content="Felix Zheng Portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="鄭祥佑 Felix Zheng | Full Stack Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Selected MERN and .NET projects by Felix Zheng."
+    />
+    <title>鄭祥佑 Felix Zheng | Full Stack Portfolio</title>
+    <script>
+      ;(() => {
+        const stored = window.localStorage.getItem('portfolio-theme')
+        const theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
