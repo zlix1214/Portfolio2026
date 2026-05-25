@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#other
+portfolio_design_system.html
+destijl-design-system.html
+project-spec.md
+agent-portfolio.md
