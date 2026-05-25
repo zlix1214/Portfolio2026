@@ -19,7 +19,7 @@ export const skills: Skill[] = [
   { category: 'Backend & DB', name: 'MongoDB', icon: 'mongodb' },
   { category: 'Tools', name: 'Git', icon: 'git' },
   { category: 'Tools', name: 'GitHub', icon: 'github' },
+  { category: 'Tools', name: 'Figma', icon: 'figma' },
   { category: 'Tools', name: 'Vercel', icon: 'vercel' },
   { category: 'Tools', name: 'Render', icon: 'render' },
-  { category: 'Tools', name: 'GitHub Copilot', icon: 'copilot', accent: true },
 ]

@@ -11,7 +11,7 @@ export function ExperienceSection() {
     <RevealedSection id="experience">
       <SectionHeading
         label={t.experience.label}
-        title={t.experience.title}
+        title="Experience"
       />
       <div className="timeline">
         {experience.map((item) => (

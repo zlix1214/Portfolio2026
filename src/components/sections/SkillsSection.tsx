@@ -12,7 +12,7 @@ export function SkillsSection() {
     <RevealedSection id="skills">
       <SectionHeading
         label={t.skills.label}
-        title={t.skills.title}
+        title="Capability Matrix"
       />
       <div className="skill-groups">
         {categories.map((category) => (

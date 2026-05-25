@@ -10,6 +10,7 @@ interface ProjectFields {
   summary?: unknown
   challenge?: unknown
   solution?: unknown
+  feature?: unknown
   features?: unknown
   role?: unknown
   outcome?: unknown
@@ -184,7 +185,7 @@ export function mapContentfulProject(entry: ContentfulProjectEntry): Project | n
     summary,
     challenge,
     solution,
-    features: asStringArray(fields.features),
+    features: asStringArray(fields.features ?? fields.feature),
     role: asString(fields.role) ?? undefined,
     outcome: asString(fields.outcome) ?? undefined,
     githubUrl,

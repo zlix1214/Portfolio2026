@@ -43,13 +43,13 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
         <>
           <div className="gallery-controls">
             <button type="button" onClick={showPrevious} aria-label={t.projects.previous}>
-              ←
+              &lt;
             </button>
             <span>
               {index + 1} / {images.length}
             </span>
             <button type="button" onClick={showNext} aria-label={t.projects.next}>
-              →
+              &gt;
             </button>
           </div>
           {currentImage.title || currentImage.description ? (
@@ -81,7 +81,7 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
             onClick={() => setLightboxOpen(false)}
             aria-label="Close image preview"
           >
-            ×
+            x
           </button>
           <img
             src={currentImage.url}

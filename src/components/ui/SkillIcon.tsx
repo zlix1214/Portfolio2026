@@ -2,6 +2,7 @@ import type { IconType } from 'react-icons'
 import {
   SiDotnet,
   SiExpress,
+  SiFigma,
   SiGithub,
   SiGit,
   SiJavascript,
@@ -13,12 +14,12 @@ import {
   SiTypescript,
   SiVercel,
 } from 'react-icons/si'
-import { VscGithubInverted } from 'react-icons/vsc'
 
 const iconMap: Record<string, IconType> = {
   csharp: SiSharp,
   dotnet: SiDotnet,
   express: SiExpress,
+  figma: SiFigma,
   git: SiGit,
   github: SiGithub,
   javascript: SiJavascript,
@@ -28,7 +29,6 @@ const iconMap: Record<string, IconType> = {
   tailwind: SiTailwindcss,
   typescript: SiTypescript,
   vercel: SiVercel,
-  copilot: VscGithubInverted,
 }
 
 const fallbackLabels: Record<string, string> = {

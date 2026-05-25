@@ -43,7 +43,7 @@ export function ProjectDetailPage() {
   return (
     <article className="page detail-page">
       <Link className="text-link" to="/">
-        ← {t.projects.backHome}
+        {t.projects.backHome}
       </Link>
       <header className="detail-hero">
         <span className="eyebrow">{project.category}</span>

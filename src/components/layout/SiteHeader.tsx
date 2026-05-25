@@ -13,12 +13,14 @@ const navItems = [
   { href: '#contact', key: 'contact' },
 ] as const
 
+const navSectionIds = navItems.map((item) => item.key)
+
 export function SiteHeader() {
   const { t, locale, setLocale } = useLocale()
   const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const isHome = location.pathname === '/'
-  const activeSection = useActiveSection(navItems.map((item) => item.key))
+  const activeSection = useActiveSection(navSectionIds)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -39,10 +41,12 @@ export function SiteHeader() {
         </Link>
         <nav className="site-nav" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <a key={item.key} href={isHome ? item.href : `/${item.href}`}>
-              <span className={activeSection === item.key ? 'is-active' : ''}>
-                {t.nav[item.key]}
-              </span>
+            <a
+              className={isHome && activeSection === item.key ? 'is-active' : ''}
+              key={item.key}
+              href={isHome ? item.href : `/${item.href}`}
+            >
+              <span>{t.nav[item.key]}</span>
             </a>
           ))}
         </nav>
@@ -53,7 +57,7 @@ export function SiteHeader() {
               type="button"
               onClick={() => setLocale('zh-TW')}
             >
-              中
+              ZH
             </button>
             <button
               className={locale === 'en' ? 'is-active' : ''}
@@ -70,7 +74,7 @@ export function SiteHeader() {
             aria-label={t.nav.theme}
             title={t.nav.theme}
           >
-            {theme === 'dark' ? '☼' : '◐'}
+            {theme === 'dark' ? 'LT' : 'DK'}
           </button>
         </div>
       </div>

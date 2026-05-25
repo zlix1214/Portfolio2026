@@ -75,7 +75,7 @@ src/
 
 ### 3.1 Layout 與導覽
 
-- 全站使用 `portfolio_design_system.html` 的 editorial visual direction。
+- 全站使用 `destijl-design-system.html` 的 editorial visual direction。
 - Header 提供首頁區塊 anchor navigation、語系切換與主題切換。
 - 首頁 CTA `瀏覽精選作品` 平滑滾動至 Projects。
 - 外部連結一律新分頁開啟，並加上 `rel="noreferrer"`。

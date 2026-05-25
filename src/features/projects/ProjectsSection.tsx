@@ -26,7 +26,7 @@ export function ProjectsSection() {
     <RevealedSection id="projects">
       <SectionHeading
         label={t.projects.label}
-        title={t.projects.title}
+        title="Selected Work"
       />
       {isLoading ? <p className="status-text">{t.projects.loading}</p> : null}
       {data?.source === 'fallback' ? (

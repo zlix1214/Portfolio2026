@@ -4,30 +4,50 @@ export function useActiveSection(sectionIds: readonly string[]) {
   const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+    let frame = 0
 
-        if (visible?.target.id) {
-          setActiveSection(visible.target.id)
-        }
-      },
-      {
-        rootMargin: '-20% 0px -55% 0px',
-        threshold: [0.2, 0.45, 0.7],
-      },
-    )
+    const updateActiveSection = () => {
+      const isNearPageEnd =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 8
 
-    sectionIds.forEach((id) => {
-      const node = document.getElementById(id)
-      if (node) {
-        observer.observe(node)
+      if (isNearPageEnd) {
+        setActiveSection(sectionIds[sectionIds.length - 1] ?? '')
+        return
       }
-    })
 
-    return () => observer.disconnect()
+      const anchorY = window.scrollY + window.innerHeight * 0.35
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter((node): node is HTMLElement => Boolean(node))
+
+      let current = sections[0]?.id ?? sectionIds[0] ?? ''
+
+      for (const section of sections) {
+        if (section.offsetTop <= anchorY) {
+          current = section.id
+        } else {
+          break
+        }
+      }
+
+      setActiveSection(current)
+    }
+
+    const scheduleUpdate = () => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(updateActiveSection)
+    }
+
+    updateActiveSection()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+    }
   }, [sectionIds])
 
   return activeSection

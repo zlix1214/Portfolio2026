@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Stijl Design System — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/*
+  ╔══════════════════════════════════════════════════╗
+  ║  DE STIJL × MODERN RESTRAINT — DESIGN SYSTEM    ║
+  ║  Portfolio Design Reference                      ║
+  ║  Version 1.0                                     ║
+  ╚══════════════════════════════════════════════════╝
+
+  DESIGN PHILOSOPHY
+  ─────────────────
+  De Stijl spatial composition × modern typographic restraint.
+  The grid is the argument. Every element earns its position.
+  Color is structural, not decorative.
+  Borders carry weight — literally (4px, 2px, 1px system).
+  Zero border-radius. Everywhere. No exceptions.
+
+  FONT STACK
+  ──────────
+  Display/Heading : Syne (800, 700, 400)
+  Labels/Mono     : IBM Plex Mono (400, 300)
+
+  COLOR SYSTEM
+  ────────────
+  --black   #111010   Primary ink, borders, fills
+  --white   #F8F7F4   Warm paper ground
+  --red     #D62B2B   Action, accent A, featured
+  --blue    #1A3A8F   Depth, accent B, info
+  --yellow  #E8C822   Highlight, accent C, dark CTA
+  --gray    #7A7872   Secondary text, metadata
+  --light   #E8E6E0   Subtle surface, placeholder
+
+  BORDER WEIGHT SYSTEM
+  ─────────────────────
+  4px — primary grid rules, card borders, nav
+  2px — section separators, button borders, tags
+  1px — internal card dividers, subtle rules
+
+  SPACING
+  ───────
+  Use multiples of 4: 4 8 12 16 20 24 32 48 64px
+  Vertical rhythm in rem: 0.5 1 1.5 2 2.5 3rem
+
+  RULES
+  ─────
+  · border-radius: 0 everywhere, always
+  · Red = action only (CTAs, featured markers)
+  · Blue = depth / structural (nav fills, info)
+  · Yellow = highlight / sparingly (dark mode CTA, stripe)
+  · No gradients, shadows, or blur effects
+  · Hover = fill inversion on all interactive elements
+*/
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --white:#F8F7F4;
+  --black:#111010;
+  --red:#D62B2B;
+  --blue:#1A3A8F;
+  --yellow:#E8C822;
+  --gray:#7A7872;
+  --light:#E8E6E0;
+  --sans:'Syne',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+
+body{
+  background:var(--white);
+  color:var(--black);
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* ── LAYOUT ── */
+.page{max-width:960px;margin:0 auto;padding:3rem 2.5rem 8rem}
+.section{margin-bottom:4rem}
+.sec-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--gray);
+  display:flex;align-items:center;gap:12px;margin-bottom:1.75rem;
+}
+.sec-label::before{content:'';width:20px;height:2px;background:var(--black)}
+
+/* ── MASTHEAD ── */
+.masthead{
+  display:grid;
+  grid-template-columns:6px 1fr 6px;
+  border-top:4px solid var(--black);
+  border-bottom:4px solid var(--black);
+  margin-bottom:3.5rem;
+}
+.mast-stripe-l{background:var(--red)}
+.mast-stripe-r{background:var(--blue)}
+.mast-body{
+  padding:2.5rem 2.5rem;
+  border-left:4px solid var(--black);
+  border-right:4px solid var(--black);
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:end;gap:2rem;
+}
+.mast-title{
+  font-family:var(--sans);
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:800;line-height:0.92;
+  letter-spacing:-0.03em;
+}
+.mast-title .accent-r{color:var(--red)}
+.mast-title .accent-b{color:var(--blue)}
+.mast-meta{text-align:right}
+.mast-meta p{
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gray);line-height:1.9;
+}
+
+/* ══════════════════════════════
+   01 — NAVIGATION
+══════════════════════════════ */
+.nav-wrap{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:stretch;
+  border:4px solid var(--black);
+}
+.nav-logo-block{
+  background:var(--black);padding:1rem 1.5rem;
+  display:flex;align-items:center;
+}
+.nav-logo-block span{color:var(--white);font-weight:800;font-size:15px;letter-spacing:0.06em}
+.nav-logo-block em{color:var(--red);font-style:normal}
+.nav-links-block{
+  display:flex;align-items:center;
+  border-left:4px solid var(--black);
+  border-right:4px solid var(--black);
+}
+.nav-link{
+  padding:1rem 1.25rem;
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gray);text-decoration:none;
+  border-right:1px solid var(--light);
+  transition:background 0.12s,color 0.12s;
+}
+.nav-link:hover,.nav-link.active{background:var(--black);color:var(--white)}
+.nav-link.active{color:var(--yellow)}
+.nav-link:last-child{border-right:none}
+.nav-cta{
+  background:var(--red);padding:1rem 1.5rem;
+  display:flex;align-items:center;
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--white);cursor:pointer;
+  transition:background 0.12s;
+  border:none;
+}
+.nav-cta:hover{background:#a82020}
+
+/* ══════════════════════════════
+   02 — HERO LAYOUT
+══════════════════════════════ */
+.hero-grid{
+  display:grid;
+  grid-template-columns:8px 1fr 260px;
+  border:4px solid var(--black);
+}
+.hero-stripe{background:var(--yellow);border-right:4px solid var(--black)}
+.hero-main{
+  padding:2.5rem 2rem;
+  border-right:4px solid var(--black);
+}
+.hero-kicker{
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1rem;
+}
+.hero-h{
+  font-size:clamp(2rem,4.5vw,3.4rem);
+  font-weight:800;line-height:0.95;
+  letter-spacing:-0.025em;margin-bottom:1.5rem;
+}
+.hero-body{
+  font-family:var(--mono);font-size:12px;
+  color:var(--gray);line-height:1.8;
+  font-weight:300;margin-bottom:2rem;
+}
+.hero-aside{display:flex;flex-direction:column}
+.hero-aside-top{
+  background:var(--blue);padding:1.5rem;flex:1;
+  border-bottom:4px solid var(--black);
+}
+.hero-aside-top .aside-label{
+  font-family:var(--mono);font-size:9px;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);margin-bottom:1rem;
+}
+.aside-num{font-size:3.5rem;font-weight:800;color:var(--white);line-height:1}
+.aside-desc{
+  font-family:var(--mono);font-size:10px;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:0.08em;text-transform:uppercase;margin-top:0.25rem;
+}
+.hero-aside-bot{background:var(--black);padding:1.5rem}
+.hero-aside-bot .aside-label{
+  font-family:var(--mono);font-size:9px;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.4);margin-bottom:0.75rem;
+}
+.hero-aside-item{
+  font-family:var(--mono);font-size:11px;
+  color:var(--white);padding:0.4rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.hero-aside-item:last-child{border-bottom:none}
+.hero-aside-item span{color:var(--yellow)}
+
+/* ══════════════════════════════
+   BUTTONS
+══════════════════════════════ */
+.btn-primary{
+  display:inline-block;background:var(--black);color:var(--white);
+  font-family:var(--mono);font-size:11px;font-weight:400;
+  letter-spacing:0.14em;text-transform:uppercase;
+  padding:13px 28px;border:4px solid var(--black);cursor:pointer;
+  transition:background 0.12s,color 0.12s;
+}
+.btn-primary:hover{background:transparent;color:var(--black)}
+
+.btn-red{
+  display:inline-block;background:var(--red);color:var(--white);
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:0.14em;text-transform:uppercase;
+  padding:13px 28px;border:4px solid var(--red);cursor:pointer;
+  transition:background 0.12s,color 0.12s;
+}
+.btn-red:hover{background:transparent;color:var(--red)}
+
+.btn-blue{
+  display:inline-block;background:var(--blue);color:var(--white);
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:0.14em;text-transform:uppercase;
+  padding:13px 28px;border:4px solid var(--blue);cursor:pointer;
+  transition:background 0.12s,color 0.12s;
+}
+.btn-blue:hover{background:transparent;color:var(--blue)}
+
+.btn-outline{
+  display:inline-block;background:transparent;color:var(--black);
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:0.14em;text-transform:uppercase;
+  padding:13px 28px;border:4px solid var(--black);cursor:pointer;
+  transition:background 0.12s,color 0.12s;
+}
+.btn-outline:hover{background:var(--black);color:var(--white)}
+
+.btn-ghost{
+  display:inline-block;background:transparent;color:var(--gray);
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:13px 0;border:none;border-bottom:2px solid var(--gray);
+  cursor:pointer;
+}
+
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+/* ══════════════════════════════
+   COLOR SWATCHES
+══════════════════════════════ */
+.swatch-grid{display:grid;grid-template-columns:repeat(5,1fr);border:4px solid var(--black)}
+.swatch{
+  padding:1.5rem 1.25rem;
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:0.06em;line-height:1.7;
+  border-right:2px solid var(--black);
+}
+.swatch:last-child{border-right:none}
+.sw-black{background:#111010;color:#F8F7F4}
+.sw-red{background:#D62B2B;color:#F8F7F4}
+.sw-blue{background:#1A3A8F;color:#F8F7F4}
+.sw-yellow{background:#E8C822;color:#111010}
+.sw-white{background:#F8F7F4;color:#111010}
+
+/* ══════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════ */
+.type-row{
+  display:grid;grid-template-columns:110px 1fr;
+  align-items:baseline;gap:1.5rem;
+  padding:1rem 0;border-bottom:2px solid var(--black);
+}
+.type-tag{font-family:var(--mono);font-size:10px;color:var(--gray)}
+.t-display{font-size:52px;font-weight:800;line-height:1;letter-spacing:-0.03em}
+.t-h1{font-size:32px;font-weight:700;line-height:1.05;letter-spacing:-0.02em}
+.t-h2{font-size:22px;font-weight:700;letter-spacing:-0.01em}
+.t-h3{font-family:var(--mono);font-size:13px;letter-spacing:0.14em;text-transform:uppercase}
+.t-body{font-size:15px;font-weight:400;line-height:1.65}
+.t-mono{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:0.1em}
+
+/* ══════════════════════════════
+   PROJECT CARDS
+══════════════════════════════ */
+/* 06A — Grid cards */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);border:4px solid var(--black)}
+.proj-card{
+  padding:1.5rem;border-right:4px solid var(--black);
+  position:relative;overflow:hidden;
+}
+.proj-card:last-child{border-right:none}
+.proj-card .card-bar{position:absolute;top:0;left:0;right:0;height:6px}
+.bar-red{background:var(--red)}
+.bar-blue{background:var(--blue)}
+.bar-yellow{background:var(--yellow)}
+.proj-card .card-num{
+  font-family:var(--mono);font-size:10px;color:var(--gray);
+  letter-spacing:0.12em;margin-top:0.75rem;margin-bottom:0.75rem;
+}
+.proj-card .card-title{font-size:18px;font-weight:700;line-height:1.1;margin-bottom:0.5rem}
+.proj-card .card-type{
+  font-family:var(--mono);font-size:10px;color:var(--gray);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;
+}
+.proj-card .card-body{font-size:12px;color:var(--gray);line-height:1.7}
+
+/* 06B — Featured card */
+.feat-card{
+  display:grid;grid-template-columns:8px 1fr;
+  border:4px solid var(--black);
+}
+.feat-stripe{background:var(--red)}
+.feat-body{
+  padding:2rem;border-left:4px solid var(--black);
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;
+}
+.feat-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--red);margin-bottom:0.75rem;
+}
+.feat-title{font-size:26px;font-weight:800;line-height:1;letter-spacing:-0.02em;margin-bottom:0.75rem}
+.feat-desc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:1.25rem}
+.feat-aside{text-align:right;min-width:120px}
+.feat-year{font-size:3rem;font-weight:800;color:var(--light);line-height:1}
+.feat-role{font-family:var(--mono);font-size:10px;color:var(--gray);letter-spacing:0.1em;text-transform:uppercase}
+
+/* 06C — Stat cards */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);border:4px solid var(--black)}
+.stat-cell{padding:1.5rem 1.25rem;border-right:4px solid var(--black)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-size:2.8rem;font-weight:800;line-height:1;letter-spacing:-0.02em}
+.stat-num.r{color:var(--red)}
+.stat-num.b{color:var(--blue)}
+.stat-label{
+  font-family:var(--mono);font-size:10px;color:var(--gray);
+  letter-spacing:0.1em;text-transform:uppercase;margin-top:0.4rem;
+}
+
+/* ══════════════════════════════
+   TAGS
+══════════════════════════════ */
+.tag{
+  display:inline-block;border:2px solid var(--black);
+  padding:4px 10px;font-family:var(--mono);font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--black);margin-right:6px;margin-bottom:6px;
+}
+.tag-red{border-color:var(--red);color:var(--red)}
+.tag-blue{border-color:var(--blue);color:var(--blue)}
+.tag-filled{background:var(--black);color:var(--white);border-color:var(--black)}
+
+/* ══════════════════════════════
+   FORM
+══════════════════════════════ */
+.form-wrap{
+  border:4px solid var(--black);
+  display:grid;grid-template-columns:1fr 200px;
+}
+.form-fields{padding:2rem}
+.form-aside-panel{
+  background:var(--black);padding:2rem;
+  border-left:4px solid var(--black);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.form-group{margin-bottom:1.5rem}
+.form-label{
+  display:block;font-family:var(--mono);font-size:10px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gray);margin-bottom:6px;
+}
+.form-input{
+  display:block;width:100%;background:transparent;
+  border:none;border-bottom:2px solid var(--black);
+  padding:8px 0;font-family:var(--sans);font-size:15px;
+  color:var(--black);outline:none;
+  transition:border-color 0.12s;
+}
+.form-input:focus{border-bottom-color:var(--red)}
+.form-input::placeholder{color:var(--light)}
+.aside-info-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;
+  text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;
+}
+.aside-info-val{color:var(--white);font-size:13px;font-weight:500;line-height:1.6}
+
+/* ══════════════════════════════
+   DARK MODE
+══════════════════════════════ */
+.dark-block{background:var(--black);padding:2rem;border:4px solid var(--black)}
+.dark-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:1.5rem;border-bottom:2px solid #2A2825;margin-bottom:2rem;
+}
+.dark-logo{font-size:15px;font-weight:800;color:var(--white)}
+.dark-logo em{color:var(--red);font-style:normal}
+.dark-links{display:flex;gap:1.5rem}
+.dark-link{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+  text-transform:uppercase;color:#5A5850;
+}
+.dark-link.on{color:var(--yellow)}
+.dark-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:2px solid #2A2825;margin-bottom:1.5rem;
+}
+.dark-card{padding:1.25rem;border-right:2px solid #2A2825}
+.dark-card:last-child{border-right:none}
+.dark-card-bar{height:3px;margin-bottom:0.75rem}
+.dark-card-num{font-family:var(--mono);font-size:10px;color:#5A5850;margin-bottom:0.5rem}
+.dark-card-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:0.4rem}
+.dark-card-body{font-size:11px;color:#5A5850;line-height:1.7}
+.dark-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.dark-btn{
+  display:inline-block;background:transparent;color:var(--white);
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;padding:10px 20px;
+  border:2px solid #2A2825;cursor:pointer;
+}
+.dark-btn-y{
+  display:inline-block;background:var(--yellow);color:var(--black);
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;padding:10px 20px;
+  border:2px solid var(--yellow);cursor:pointer;
+}
+.dark-tag{
+  display:inline-block;border:1px solid #3A3830;
+  padding:3px 9px;font-family:var(--mono);font-size:9px;
+  letter-spacing:0.1em;text-transform:uppercase;color:#5A5850;
+  margin-right:6px;
+}
+
+/* ══════════════════════════════
+   TOKENS REFERENCE
+══════════════════════════════ */
+.token-row{
+  display:grid;grid-template-columns:180px 1fr;
+  align-items:center;gap:1rem;
+  padding:0.6rem 0;border-bottom:1px solid var(--light);
+  font-family:var(--mono);font-size:11px;
+}
+.token-name{color:var(--gray)}
+.token-val{color:var(--red)}
+
+/* ══════════════════════════════
+   DIVIDERS
+══════════════════════════════ */
+.rule-4{height:4px;background:var(--black);margin:2rem 0}
+.rule-2{height:2px;background:var(--black);margin:1.5rem 0}
+.rule-tricolor{display:grid;grid-template-columns:1fr 1fr 1fr;height:4px;margin:2rem 0}
+.rule-tricolor div:nth-child(1){background:var(--red)}
+.rule-tricolor div:nth-child(2){background:var(--blue)}
+.rule-tricolor div:nth-child(3){background:var(--yellow)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="mast-stripe-l"></div>
+    <div class="mast-body">
+      <div>
+        <div class="mast-title">
+          De<span class="accent-r">Stijl</span><br>
+          Port<span class="accent-b">folio</span>
+        </div>
+      </div>
+      <div class="mast-meta">
+        <p>Design System</p>
+        <p>Version 1.0</p>
+        <p>——————</p>
+        <p>Constructivist</p>
+        <p>Direction</p>
+      </div>
+    </div>
+    <div class="mast-stripe-r"></div>
+  </div>
+
+  <!-- 01 NAV -->
+  <div class="section">
+    <div class="sec-label">01 — Navigation</div>
+    <nav class="nav-wrap">
+      <div class="nav-logo-block"><span>YN<em>.</em></span></div>
+      <div class="nav-links-block">
+        <a class="nav-link active" href="#">Work</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">Writing</a>
+        <a class="nav-link" href="#">Process</a>
+      </div>
+      <button class="nav-cta">Contact →</button>
+    </nav>
+  </div>
+
+  <!-- 02 HERO -->
+  <div class="section">
+    <div class="sec-label">02 — Hero Composition</div>
+    <div class="hero-grid">
+      <div class="hero-stripe"></div>
+      <div class="hero-main">
+        <div class="hero-kicker">Designer × Engineer × Builder</div>
+        <div class="hero-h">Making<br>structure<br>visible.</div>
+        <div class="hero-body">
+          I build interfaces where the grid is the argument —<br>
+          every element earns its position or gets removed.
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary">View Work</button>
+          <button class="btn-ghost">Download CV →</button>
+        </div>
+      </div>
+      <div class="hero-aside">
+        <div class="hero-aside-top">
+          <div class="aside-label">Projects Shipped</div>
+          <div class="aside-num">48</div>
+          <div class="aside-desc">Since 2018</div>
+        </div>
+        <div class="hero-aside-bot">
+          <div class="aside-label">Selected Work</div>
+          <div class="hero-aside-item"><span>01</span> — Brand Identity</div>
+          <div class="hero-aside-item"><span>02</span> — SaaS Dashboard</div>
+          <div class="hero-aside-item"><span>03</span> — Design System</div>
+          <div class="hero-aside-item"><span>04</span> — Mobile App</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 TYPE -->
+  <div class="section">
+    <div class="sec-label">03 — Typography Scale</div>
+    <div class="type-row"><div class="type-tag">Display / 52</div><div class="t-display">Portfolio</div></div>
+    <div class="type-row"><div class="type-tag">H1 / 32 bold</div><div class="t-h1">Selected Work</div></div>
+    <div class="type-row"><div class="type-tag">H2 / 22 bold</div><div class="t-h2">Project Overview</div></div>
+    <div class="type-row"><div class="type-tag">H3 mono / 13</div><div class="t-h3">Case Study Notes</div></div>
+    <div class="type-row"><div class="type-tag">Body / 15</div><div class="t-body">Structure is not decoration — it is the message itself, made visible through repetition and constraint.</div></div>
+    <div class="type-row"><div class="type-tag">Mono / 12</div><div class="t-mono">01 — DESIGN × ENGINEERING × 2024</div></div>
+  </div>
+
+  <!-- 04 COLOR -->
+  <div class="section">
+    <div class="sec-label">04 — Color Palette</div>
+    <div class="swatch-grid">
+      <div class="swatch sw-black">INK<br>#111010<br>Primary</div>
+      <div class="swatch sw-red">RED<br>#D62B2B<br>Action / Accent A</div>
+      <div class="swatch sw-blue">BLUE<br>#1A3A8F<br>Depth / Accent B</div>
+      <div class="swatch sw-yellow">YELLOW<br>#E8C822<br>Highlight / Accent C</div>
+      <div class="swatch sw-white">PAPER<br>#F8F7F4<br>Ground</div>
+    </div>
+    <p style="margin-top:0.75rem;font-family:var(--mono);font-size:10px;color:var(--gray);letter-spacing:0.08em">
+      De Stijl primary triad — used structurally. Red = action · Blue = depth · Yellow = highlight (sparingly)
+    </p>
+  </div>
+
+  <!-- 05 BUTTONS -->
+  <div class="section">
+    <div class="sec-label">05 — Buttons</div>
+    <div class="btn-row">
+      <button class="btn-primary">Primary</button>
+      <button class="btn-red">Action</button>
+      <button class="btn-blue">Deep</button>
+      <button class="btn-outline">Outline</button>
+      <button class="btn-ghost">Ghost Link →</button>
+    </div>
+    <p style="margin-top:1rem;font-family:var(--mono);font-size:10px;color:var(--gray);letter-spacing:0.06em">
+      4px border weight — matches primary grid rule — hover always inverts fill
+    </p>
+  </div>
+
+  <!-- 06A PROJECT CARDS -->
+  <div class="section">
+    <div class="sec-label">06A — Project Cards</div>
+    <div class="card-grid">
+      <div class="proj-card">
+        <div class="card-bar bar-red"></div>
+        <div class="card-num">01 — 2024</div>
+        <div class="card-title">Brand Identity</div>
+        <div class="card-type">Branding · Strategy</div>
+        <div class="card-body">Complete visual identity from logo to motion for a fintech startup.</div>
+      </div>
+      <div class="proj-card">
+        <div class="card-bar bar-blue"></div>
+        <div class="card-num">02 — 2024</div>
+        <div class="card-title">SaaS Dashboard</div>
+        <div class="card-type">Product · Engineering</div>
+        <div class="card-body">Data-dense analytics interface built on a custom design system.</div>
+      </div>
+      <div class="proj-card">
+        <div class="card-bar bar-yellow"></div>
+        <div class="card-num">03 — 2023</div>
+        <div class="card-title">Mobile App</div>
+        <div class="card-type">iOS · UX Research</div>
+        <div class="card-body">End-to-end from user research to App Store launch.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06B FEATURED CARD -->
+  <div class="section">
+    <div class="sec-label">06B — Featured Card</div>
+    <div class="feat-card">
+      <div class="feat-stripe"></div>
+      <div class="feat-body">
+        <div>
+          <div class="feat-label">Featured — 2024</div>
+          <div class="feat-title">Design System at Scale</div>
+          <div class="feat-desc">Component library across 12 product teams — 240+ components, automated token pipeline from Figma to production code.</div>
+          <div>
+            <span class="tag tag-red">Featured</span>
+            <span class="tag">Design System</span>
+            <span class="tag tag-blue">React</span>
+            <span class="tag">Figma Tokens</span>
+          </div>
+        </div>
+        <div class="feat-aside">
+          <div class="feat-year">24</div>
+          <div class="feat-role">Lead Designer<br>+ Engineer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06C STAT CARDS -->
+  <div class="section">
+    <div class="sec-label">06C — Stat Cards</div>
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-num r">12+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">48</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num b">3</div>
+        <div class="stat-label">Awards Won</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">$2M</div>
+        <div class="stat-label">Value Delivered</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 TAGS -->
+  <div class="section">
+    <div class="sec-label">07 — Tags / Labels</div>
+    <div>
+      <span class="tag tag-filled">Featured</span>
+      <span class="tag tag-red">Design Systems</span>
+      <span class="tag tag-blue">Engineering</span>
+      <span class="tag">React</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">Figma</span>
+      <span class="tag">Motion</span>
+      <span class="tag">Branding</span>
+    </div>
+  </div>
+
+  <!-- 08 FORM -->
+  <div class="section">
+    <div class="sec-label">08 — Form</div>
+    <div class="form-wrap">
+      <div class="form-fields">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" type="text" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <input class="form-input" type="text" placeholder="What are you working on?">
+        </div>
+        <button class="btn-red">Send Message</button>
+      </div>
+      <div class="form-aside-panel">
+        <div>
+          <div class="aside-info-label">Available For</div>
+          <div class="aside-info-val">Freelance<br>Full-time<br>Consulting</div>
+        </div>
+        <div>
+          <div class="aside-info-label">Response Time</div>
+          <div class="aside-info-val" style="color:var(--yellow)">24h</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 DARK MODE -->
+  <div class="section">
+    <div class="sec-label">09 — Dark Mode</div>
+    <div class="dark-block">
+      <div class="dark-nav">
+        <div class="dark-logo">YN<em>.</em></div>
+        <div class="dark-links">
+          <span class="dark-link on">Work</span>
+          <span class="dark-link">About</span>
+          <span class="dark-link">Writing</span>
+          <span class="dark-link">Contact</span>
+        </div>
+      </div>
+      <div class="dark-cards">
+        <div class="dark-card">
+          <div class="dark-card-bar" style="background:var(--red)"></div>
+          <div class="dark-card-num">01 — 2024</div>
+          <div class="dark-card-title">Brand Identity</div>
+          <div class="dark-card-body">Visual system for a Series B startup.</div>
+        </div>
+        <div class="dark-card">
+          <div class="dark-card-bar" style="background:var(--blue)"></div>
+          <div class="dark-card-num">02 — 2024</div>
+          <div class="dark-card-title">SaaS Dashboard</div>
+          <div class="dark-card-body">React analytics with custom design system.</div>
+        </div>
+        <div class="dark-card">
+          <div class="dark-card-bar" style="background:var(--yellow)"></div>
+          <div class="dark-card-num">03 — 2023</div>
+          <div class="dark-card-title">Mobile App</div>
+          <div class="dark-card-body">From research to App Store launch.</div>
+        </div>
+      </div>
+      <div class="dark-btns">
+        <button class="dark-btn">View All Work</button>
+        <button class="dark-btn-y">Get In Touch</button>
+        <span class="dark-tag" style="color:var(--red);border-color:#3A2020">Featured</span>
+        <span class="dark-tag">Design</span>
+        <span class="dark-tag">Engineering</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 DIVIDERS -->
+  <div class="section">
+    <div class="sec-label">10 — Rules & Dividers</div>
+    <p style="font-family:var(--mono);font-size:10px;color:var(--gray);margin-bottom:0.75rem">4px — primary grid rule</p>
+    <div class="rule-4"></div>
+    <p style="font-family:var(--mono);font-size:10px;color:var(--gray);margin-bottom:0.75rem">2px — section separator</p>
+    <div class="rule-2"></div>
+    <p style="font-family:var(--mono);font-size:10px;color:var(--gray);margin-bottom:0.75rem">Tricolor — page terminus / accent divider</p>
+    <div class="rule-tricolor"><div></div><div></div><div></div></div>
+  </div>
+
+  <!-- 11 TOKENS -->
+  <div class="section">
+    <div class="sec-label">11 — Design Tokens</div>
+    <div class="token-row"><span class="token-name">--sans</span><span class="token-val">'Syne' — 800 display / 700 heading / 400 body</span></div>
+    <div class="token-row"><span class="token-name">--mono</span><span class="token-val">'IBM Plex Mono' — labels, tags, metadata, kickers</span></div>
+    <div class="token-row"><span class="token-name">--black</span><span class="token-val">#111010 — primary ink, borders, filled buttons</span></div>
+    <div class="token-row"><span class="token-name">--white</span><span class="token-val">#F8F7F4 — warm paper ground</span></div>
+    <div class="token-row"><span class="token-name">--red</span><span class="token-val">#D62B2B — action, accent A, featured markers</span></div>
+    <div class="token-row"><span class="token-name">--blue</span><span class="token-val">#1A3A8F — depth, accent B, structural fills</span></div>
+    <div class="token-row"><span class="token-name">--yellow</span><span class="token-val">#E8C822 — highlight, accent C, dark-mode CTA only</span></div>
+    <div class="token-row"><span class="token-name">--gray</span><span class="token-val">#7A7872 — secondary text, labels, metadata</span></div>
+    <div class="token-row"><span class="token-name">--light</span><span class="token-val">#E8E6E0 — subtle surface, placeholder text</span></div>
+    <div class="token-row"><span class="token-name">border weight: primary</span><span class="token-val">4px — nav, card borders, structural dividers</span></div>
+    <div class="token-row"><span class="token-name">border weight: secondary</span><span class="token-val">2px — buttons, tags, section rules</span></div>
+    <div class="token-row"><span class="token-name">border weight: tertiary</span><span class="token-val">1px — internal card dividers, subtle lines</span></div>
+    <div class="token-row"><span class="token-name">border-radius</span><span class="token-val">0 — zero everywhere, no exceptions</span></div>
+    <div class="token-row"><span class="token-name">color rule</span><span class="token-val">Red = action · Blue = depth · Yellow = highlight only</span></div>
+    <div class="token-row"><span class="token-name">hover rule</span><span class="token-val">Always invert fill — background ↔ text color swap</span></div>
+  </div>
+
+</div>
+</body>
+</html>
