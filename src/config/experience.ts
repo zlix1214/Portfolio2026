@@ -32,7 +32,7 @@ export const experienceByLocale = {
   ],
   en: [
     {
-      company: 'Infolight System Co., Ltd.',
+      company: 'Infolight Co., Ltd.',
       role: 'Software Engineer',
       timeRange: '2026.03 -',
       highlights: [
